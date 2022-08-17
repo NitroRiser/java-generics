@@ -1,21 +1,46 @@
 package application;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.time.Instant;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Scanner;
 import java.util.Set;
-import java.util.TreeSet;
 
-import entities.Product;
+import entities.LogEntry;
 
 public class Main {
     public static void main(String[] args) {
-        Set<Product> set = new TreeSet<>();
+        Scanner sc = new Scanner(System.in);
 
-        set.add(new Product("TV", 990.00));
-        set.add(new Product("Notebook", 1200.00));
-        set.add(new Product("Tablet", 400.00));
+        System.out.print("Enter file full path: ");
+        String path = sc.nextLine();
 
-        for (Product p : set) {
-            System.out.println(p);
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+
+            Set<LogEntry> set = new HashSet<>();
+
+            String line = br.readLine();
+
+            while (line != null) {
+                String[] fields = line.split(" ");
+                String username = fields[0];
+                Date moment = Date.from(Instant.parse(fields[1]));
+
+                set.add(new LogEntry(username, moment));
+
+                line = br.readLine();
+            }
+
+            System.out.println("Total users: " + set.size());
+
+        } catch (IOException e) {
+            // TODO: handle exception
+            System.out.println("Error: " + e.getMessage());
         }
 
+        sc.close();
     }
 }
