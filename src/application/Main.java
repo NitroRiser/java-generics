@@ -1,34 +1,20 @@
 package application;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-
-import entities.Product;
-import services.CalculationService;
 
 public class Main {
     public static void main(String[] args) {
-        List<Product> list  = new ArrayList<>();
+        List<Integer> myInts = Arrays.asList(5, 2, 10);
+        printList(myInts);
 
-        String path = "/workspace/java-generics/temp/in.txt";
+        List<String> myStr = Arrays.asList("Maria", "Alex", "Bob");
+        printList(myStr);
+    }
 
-        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
-
-            String line = br.readLine();
-            while (line != null){
-                String[] fields = line.split(",");
-                list.add(new Product(fields[0], Double.parseDouble(fields[1])));
-                line = br.readLine();
-            }
-
-            Product x = CalculationService.max(list);
-            System.out.println("Max: ");
-            System.out.println(x);
-            
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+    public static void printList(List<?> list){
+        for (Object obj : list){
+            System.out.println(obj);
         }
     }
 }
