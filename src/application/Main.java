@@ -1,29 +1,20 @@
 package application;
 
-import java.util.Arrays;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.Set;
-import java.util.TreeSet;
+
+import entities.Product;
 
 public class Main {
     public static void main(String[] args) {
-        Set<Integer> a = new TreeSet<>(Arrays.asList(0,2,4,5,6,8,10));
-        Set<Integer> b = new TreeSet<>(Arrays.asList(5,6,7,8,9,10));
+        Set<Product> set = new HashSet<>();
 
-        //union
-        Set<Integer> c = new TreeSet<>(a);
-        c.addAll(b);
-        System.out.println(c);
+        set.add(new Product("TV", 990.00));
+        set.add(new Product("Notebook", 1200.00));
+        set.add(new Product("Tablet", 400.00));
 
-        //intersection
-        Set<Integer> d = new TreeSet<>(a);
-        d.retainAll(b);
-        System.out.println(d);
+        Product prod = new Product("Notebook", 1200.00);
 
-        //difference
-        Set<Integer> e = new TreeSet<>(a);
-        e.removeAll(b);
-        System.out.println(e);
+        System.out.println(set.contains(prod));
     }
 }

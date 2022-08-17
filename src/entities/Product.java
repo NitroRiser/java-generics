@@ -1,15 +1,15 @@
 package entities;
 
-public class Client {
+public class Product {
     private String name;
-    private String email;
+    private Double price;
 
-    public Client() {
+    public Product() {
     }
 
-    public Client(String name, String email) {
+    public Product(String name, Double price) {
         this.name = name;
-        this.email = email;
+        this.price = price;
     }
 
     public String getName() {
@@ -20,20 +20,20 @@ public class Client {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public Double getPrice() {
+        return price;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(Double price) {
+        this.price = price;
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((email == null) ? 0 : email.hashCode());
         result = prime * result + ((name == null) ? 0 : name.hashCode());
+        result = prime * result + ((price == null) ? 0 : price.hashCode());
         return result;
     }
 
@@ -45,21 +45,19 @@ public class Client {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Client other = (Client) obj;
-        if (email == null) {
-            if (other.email != null)
-                return false;
-        } else if (!email.equals(other.email))
-            return false;
+        Product other = (Product) obj;
         if (name == null) {
             if (other.name != null)
                 return false;
         } else if (!name.equals(other.name))
             return false;
+        if (price == null) {
+            if (other.price != null)
+                return false;
+        } else if (!price.equals(other.price))
+            return false;
         return true;
     }
-
-    
 
     
 }
